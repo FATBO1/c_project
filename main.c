@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #define MAX_CATEGORIES 12
 #define MAX_CATEGORY_NAME_LENGTH 15
@@ -15,7 +16,7 @@ void print_horizontal_bar_chart(char title[], Category categories[], int num_cat
     float max_value = 0;
     
     // Find the maximum value
-    for (i = 0; i < num_categories; ++i) {
+    for (i = 0; i < num_categories; i++) {
         if (categories[i].value > max_value) {
             max_value = categories[i].value;
         }
@@ -28,7 +29,7 @@ void print_horizontal_bar_chart(char title[], Category categories[], int num_cat
     printf("\n");
     printf("%*s\n\n", 75 + strlen(title) / 2, title);
 
-    for (i = 0; i < num_categories; ++i) {
+    for (i = 0; i < num_categories; i++) {
         printf("%15s|\n", " ");
         printf("%15s|", categories[i].name); // Print category name followed by a vertical bar
         int bar_length = categories[i].value / scaling_factor;
@@ -95,18 +96,32 @@ int main() {
     fgets(title, sizeof(title), stdin);
     title[strcspn(title, "\n")] = '\0'; // Removing newline character
 
-    printf("Enter the number of categories (up to 12): ");
-    scanf("%d", &num_categories);
-    getchar(); // Clearing the input buffer
+    do {
+        printf("Enter the number of categories (up to 12): ");
+        scanf("%d", &num_categories);
+        getchar(); // Clearing the input buffer
+        if (num_categories < 1 || num_categories > 12) {
+            printf("Enter a valid number!\n");
+        }
+    } while (num_categories < 1 || num_categories > 12);
+    
 
     printf("Enter category names and values (max 15 characters each):\n");
-    for (i = 0; i < num_categories; ++i) {
-        printf("Category %d name: ", i + 1);
-        fgets(categories[i].name, sizeof(categories[i].name), stdin);
-        categories[i].name[strcspn(categories[i].name, "\n")] = '\0'; // Removing newline character
+    for (i = 0; i < num_categories; i++) {
+        char input[MAX_CATEGORY_NAME_LENGTH];
+        do {  
+            printf("Category %d name: ", i + 1);
+            scanf("%s", &input);
+            if (strlen(input) > MAX_CATEGORY_NAME_LENGTH) {
+                printf("Category name is too long!\n");
+            }
+        } while (strlen(input) > 15 || strlen(input) == 0);
+        strcpy(categories[i].name, input); // Copy value of input into typedef member name
+
         printf("Value for %s: ", categories[i].name);
         scanf("%f", &categories[i].value);
         getchar(); // Clearing the input buffer
+        
     }
 
     printf("Enter label for the x-axis: ");
