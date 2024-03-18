@@ -1,0 +1,12 @@
+{
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        "stdlib.h": "c",
+        "print_graph.h": "c",
+        "string.h": "c",
+        "ctype.h": "c",
+        "stdio.h": "c",
+        "category.h": "c"
+    }
+}
