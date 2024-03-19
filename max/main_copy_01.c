@@ -37,6 +37,7 @@ int main()
     {
         printf("Enter the number of categories (up to 12): ");
         scanf("%s", catinput);
+        getchar(); // Clearing the input buffer
 
         int validInput = 1;
 
@@ -72,6 +73,7 @@ int main()
             // Input Category Name
             printf("Category %d name: ", i + 1);
             scanf("%s", &input);
+            getchar(); // Clearing the input buffer
             if (strlen(input) > MAX_CATEGORY_NAME_LENGTH)
             {
                 printf("Category name is too long!\n");
@@ -87,6 +89,7 @@ int main()
         {
             printf("Value for %s: ", categories[i].name);
             scanf("%s", valueinput);
+            getchar(); // Clearing the input buffer
             validInput = 1;
 
             // Check each character in the input
