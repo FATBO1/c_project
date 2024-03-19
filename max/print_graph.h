@@ -36,7 +36,12 @@ void print_horizontal_bar_chart(char title[], Category categories[], int num_cat
         int bar_length = categories[i].value / scaling_factor;
         for (j = 0; j < bar_length; ++j)
         {
-            printf("X");
+            // printf("X");
+            //printf("%c", (char)254u);
+            printf("\033[0;34m%c", (char)254u);
+    
+            // Reset text color to default
+            printf("\033[0m");
         }
         printf("\n");
     }
