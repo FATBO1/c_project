@@ -6,7 +6,6 @@
 #include "print_graph.h"
 #include "save_graph.h"
 
-
 // Comparator function for sorting categories alphabetically by name
 int compare_categories_by_name(const void *a, const void *b)
 {
@@ -33,26 +32,46 @@ int main()
     fgets(title, sizeof(title), stdin);
     title[strcspn(title, "\n")] = '\0'; // Removing newline character
 
+    char catinput[100]; // Assuming input does not exceed 100 characters
     do
     {
         printf("Enter the number of categories (up to 12): ");
-        scanf("%d", &num_categories);
-        getchar(); // Clearing the input buffer
-        if (num_categories < 1 || num_categories > 12)
+        scanf("%s", catinput);
+
+        int validInput = 1;
+
+        // Check each character in the input
+        for (int i = 0; catinput[i] != '\0'; i++)
         {
-            printf("Enter a valid number!\n");
+            if (!isdigit(catinput[i]))
+            {
+                validInput = 0;
+                printf("Invalid input! Please enter a number.\n");
+                break;
+            }
+        }
+
+        // If input is valid (contains only digits), convert it to integer
+        if (validInput)
+        {
+            num_categories = atoi(catinput);
+            if (num_categories < 1 || num_categories > 12)
+            {
+                printf("Enter a valid number between 1 and 12!\n");
+            }
         }
     } while (num_categories < 1 || num_categories > 12);
 
+    // Input Category Names and Values
     printf("Enter category names and values (max 15 characters each):\n");
     for (i = 0; i < num_categories; i++)
     {
         char input[MAX_CATEGORY_NAME_LENGTH];
         do
         {
+            // Input Category Name
             printf("Category %d name: ", i + 1);
             scanf("%s", &input);
-            getchar(); // Clearing the input buffer
             if (strlen(input) > MAX_CATEGORY_NAME_LENGTH)
             {
                 printf("Category name is too long!\n");
@@ -60,11 +79,33 @@ int main()
         } while (strlen(input) > 15 || strlen(input) == 0);
         strcpy(categories[i].name, input); // Copy value of input into typedef member name
 
-        printf("Value for %s: ", categories[i].name);
-        scanf("%f", &categories[i].value);
-        getchar(); // Clearing the input buffer
-    }
+        // Input Category Value
+        char valueinput[100];
+        int validInput = 0;
 
+        do
+        {
+            printf("Value for %s: ", categories[i].name);
+            scanf("%s", valueinput);
+            validInput = 1;
+
+            // Check each character in the input
+            for (int j = 0; valueinput[j] != '\0'; j++)
+            {
+                if (!isdigit(valueinput[j]) && valueinput[j] != '.')
+                {
+                    validInput = 0;
+                    printf("Invalid input! Please enter a number.\n");
+                    break;
+                }
+            }
+
+            if (validInput)
+            {
+                categories[i].value = atof(valueinput); // Convert input string to float
+            }
+        } while (!validInput);
+    }
     printf("Enter label for the x-axis: ");
     fgets(x_axis_label, sizeof(x_axis_label), stdin);
     x_axis_label[strcspn(x_axis_label, "\n")] = '\0'; // Removing newline character
