@@ -38,7 +38,9 @@ void print_horizontal_bar_chart(char title[], Category categories[], int num_cat
         {
             // printf("X");
             //printf("%c", (char)254u);
-            printf("\033[0;34m%c", (char)254u);
+            //printf("\033[0;34m%c", (char)254u);
+            printf("\033[0;31m"); // Set text color to red (ANSI code 31)
+            printf("█");
     
             // Reset text color to default
             printf("\033[0m");

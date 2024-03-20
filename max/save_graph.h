@@ -36,7 +36,9 @@ void print_horizontal_bar_chart_to_file(FILE *filePointer, char title[], Categor
         int bar_length = categories[i].value / scaling_factor;
         for (j = 0; j < bar_length; ++j)
         {
-            fprintf(filePointer, "X");
+            //fprintf(filePointer, "X");
+            fprintf(filePointer, "█");
+   
         }
         fprintf(filePointer, "\n");
     }
