@@ -43,8 +43,10 @@ void print_horizontal_bar_chart(char title[], Category categories[], int num_cat
             // Reset text color to default
             printf("\033[0m");
         }
+        printf(" %.2f", categories[i].value);
         printf("\n");
     }
+    
     printf("%15s|\n", " ");
     printf("%15s+", " ");
 

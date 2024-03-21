@@ -170,12 +170,14 @@ void modify_chart(Category *categories, int *num_categories, char title[], char 
                 // Change chart title
                 printf("\nEnter the new title for the chart: ");
                 scanf(" %[^\n]", title); // Read input including whitespace characters
+                getchar(); // Clearing the input buffer
                 printf("Chart title changed successfully.\n");
                 break;
             case 6:
                 // Change x-axis title
                 printf("\nEnter the new label for the x-axis: ");
                 scanf(" %[^\n]", x_axis_label); // Read input including whitespace characters
+                getchar(); // Clearing the input buffer
                 printf("X-axis label changed successfully.\n");
                 break;
             case 7:

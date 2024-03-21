@@ -9,6 +9,8 @@
         "stdio.h": "c",
         "category.h": "c",
         "compare_categories.h": "c",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "cjson.h": "c",
+        "curl.h": "c"
     }
 }
