@@ -167,6 +167,9 @@ int main()
                 // Close the file
                 fclose(filePointer);
                 break;
+
+               
+                break;
             case 2:
                 // Code to modify chart
                 printf("\nModifying chart...\n");
