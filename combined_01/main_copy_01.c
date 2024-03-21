@@ -6,6 +6,7 @@
 #include "print_graph.h"
 #include "save_graph.h"
 #include "compare_categories.h"
+#include "modify.h"
 
 int main()
 {
@@ -15,7 +16,8 @@ int main()
         Category categories[MAX_CATEGORIES];
         char x_axis_label[150];
         int sort_by_length;
-        int num_categories, i;
+        int num_categories = 0;
+        int i;
         int user_option;
         char filename[100];
 
@@ -59,7 +61,7 @@ int main()
         printf("Enter category names and values (max 15 characters each):\n");
         for (i = 0; i < num_categories; i++)
         {
-            char input[MAX_CATEGORY_NAME_LENGTH];
+            char input[100];
             do
             {
                 // Input Category Name
@@ -167,11 +169,12 @@ int main()
                 // Close the file
                 fclose(filePointer);
                 break;
-                
             case 2:
                 // Code to modify chart
                 printf("\nModifying chart...\n");
                 // You can put your modifying code here
+                modify_chart(categories, &num_categories, title, x_axis_label, sort_by_length);
+                print_horizontal_bar_chart(title, categories, num_categories, x_axis_label); // Print new chart
                 break;
             case 3:
                 // Code to create new chart
