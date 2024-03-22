@@ -15,7 +15,6 @@ int main()
         char title[150];
         Category categories[MAX_CATEGORIES];
         char x_axis_label[150];
-        int sort_by_length;
         int num_categories = 0;
         int i;
         int user_option;
@@ -30,7 +29,7 @@ int main()
         do
         {
             printf("Enter the number of categories (up to 12): ");
-            scanf("%s", catInput);
+            scanf(" %[^\n]", catInput);
             getchar(); // Clearing the input buffer
 
             int validInput = numValidation(catInput); // Input Validation
@@ -55,7 +54,7 @@ int main()
             {
                 // Input Category Name
                 printf("Category %d name: ", i + 1);
-                scanf("%s", &input);
+                scanf(" %[^\n]", &input);
                 getchar(); // Clearing the input buffer
                 if (strlen(input) > MAX_CATEGORY_NAME_LENGTH)
                 {
@@ -71,7 +70,7 @@ int main()
             do
             {
                 printf("Value for %s: ", categories[i].name);
-                scanf("%s", valueinput);
+                scanf(" %[^\n]", valueinput);
                 getchar(); // Clearing the input buffer
                 validInput = 1;
 
@@ -96,19 +95,33 @@ int main()
         fgets(x_axis_label, sizeof(x_axis_label), stdin);
         x_axis_label[strcspn(x_axis_label, "\n")] = '\0'; // Removing newline character
 
-        printf("Sort bars alphabetically by category name (0) or by bar length (1)? (0/1): ");
-        scanf("%d", &sort_by_length);
-        getchar(); // Clearing the in5put buffer
-
         // Sort categories
-        if (sort_by_length)
-        {
-            qsort(categories, num_categories, sizeof(Category), compare_categories_by_value);
-        }
-        else
-        {
-            qsort(categories, num_categories, sizeof(Category), compare_categories_by_name);
-        }
+        char input[100];
+        int sort_by_length;
+        do {
+            printf("Sort bars alphabetically by category name (0) or by bar length (1)? (0/1): ");
+            scanf(" %[^\n]", input);
+            getchar(); // Clearing the input buffer
+
+            int validInput = numValidation(input); // Input Validation
+
+            // If input is valid (contains only digits), convert it to integer
+            if (validInput)
+            {
+                sort_by_length = atoi(input);
+                if (sort_by_length == 0) {
+                    qsort(categories, num_categories, sizeof(Category), compare_categories_by_name);
+                    break;
+                }
+                else if (sort_by_length == 1) {
+                    qsort(categories, num_categories, sizeof(Category), compare_categories_by_value);
+                    break;
+                }
+                else {
+                    printf("Invalid Choice.\n");
+                }
+            }
+        } while (sort_by_length != 0 || sort_by_length != 1);
 
         // Print the horizontal bar chart
         print_horizontal_bar_chart(title, categories, num_categories, x_axis_label);

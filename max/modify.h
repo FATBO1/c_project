@@ -30,7 +30,7 @@ void modify_chart(Category *categories, int *num_categories, char title[], char 
                     char input[100];
                     do {
                         printf("\nEnter the name for the new category (max 15 characters each): ");
-                        scanf("%s", &input);
+                        scanf(" %[^\n]", &input);
                         getchar(); // Clearing the input buffer
                         if (strlen(input) > MAX_CATEGORY_NAME_LENGTH) {
                             printf("Category name is too long!\n");
@@ -43,7 +43,7 @@ void modify_chart(Category *categories, int *num_categories, char title[], char 
                     int validInput = 0;
                     do {
                         printf("Value for %s: ", categories[*num_categories].name);
-                        scanf("%s", valueInput);
+                        scanf(" %[^\n]", valueInput);
                         getchar(); // Clearing the input buffer
                         
                         int validInput = numValidation(valueInput); // Input Validation
@@ -68,7 +68,7 @@ void modify_chart(Category *categories, int *num_categories, char title[], char 
                     int index;
                     do {
                         printf("\nEnter the index of the category you want to remove (1-%d): ", *num_categories);
-                        scanf("%s", &input);
+                        scanf(" %[^\n]", &input);
                         getchar(); // Clearing the input buffer
 
                         int validInput = numValidation(input);
@@ -103,7 +103,7 @@ void modify_chart(Category *categories, int *num_categories, char title[], char 
                     int index;
                     do {
                         printf("\nEnter the index of the category you want to modify (1-%d): ", *num_categories);
-                        scanf("%s", &input);
+                        scanf(" %[^\n]", &input);
                         getchar(); // Clearing the input buffer
 
                         int validInput = numValidation(input); // Input Validation
@@ -115,7 +115,7 @@ void modify_chart(Category *categories, int *num_categories, char title[], char 
                                 char input[100];
                                 do {
                                     printf("Enter the new name for category %d: ", index);
-                                    scanf("%s", &input);
+                                    scanf(" %[^\n]", &input);
                                     getchar(); // Clearing the input buffer
                                     if (strlen(input) > MAX_CATEGORY_NAME_LENGTH) {
                                         printf("Category name is too long!\n");
@@ -141,7 +141,7 @@ void modify_chart(Category *categories, int *num_categories, char title[], char 
                     int index;
                     do {
                         printf("\nEnter the index of the category you want to modify (1-%d): ", *num_categories);
-                        scanf("%s", &input);
+                        scanf(" %[^\n]", &input);
                         getchar(); // Clearing the input buffer
 
                         int validInput = numValidation(input); // Input Validation
@@ -154,7 +154,7 @@ void modify_chart(Category *categories, int *num_categories, char title[], char 
                                 int validInput = 0;
                                 do {
                                     printf("Enter the new value for category %d: ", index);
-                                    scanf("%s", valueInput);
+                                    scanf(" %[^\n]", valueInput);
                                     getchar(); // Clearing the input buffer
                                     
                                     int validInput = numValidation(valueInput); // Input Validation
@@ -193,17 +193,35 @@ void modify_chart(Category *categories, int *num_categories, char title[], char 
                 printf("X-axis label changed successfully.\n");
                 break;
             case 7:
-                // Change sorting method
-                printf("\nSort bars alphabetically by category name (0) or by bar length (1)? (0/1): ");
-                scanf("%d", &sort_by_length);
-                getchar(); // Clearing the input buffer
-                // Sort categories
-                if (sort_by_length) {
-                    qsort(categories, *num_categories, sizeof(Category), compare_categories_by_value);
-                } else {
-                    qsort(categories, *num_categories, sizeof(Category), compare_categories_by_name);
-                }
-                printf("Sorting method changed successfully.\n");
+                // // Change sorting method
+                char input[100];
+                int sort_by_length;
+                do {
+                    printf("Sort bars alphabetically by category name (0) or by bar length (1)? (0/1): ");
+                    scanf(" %[^\n]", input);
+                    getchar(); // Clearing the input buffer
+
+                    int validInput = numValidation(input); // Input Validation
+
+                    // If input is valid (contains only digits), convert it to integer
+                    if (validInput)
+                    {
+                        sort_by_length = atoi(input);
+                        if (sort_by_length == 0) {
+                            qsort(categories, *num_categories, sizeof(Category), compare_categories_by_name);
+                            printf("Sorting method changed successfully.\n");
+                            break;
+                        }
+                        else if (sort_by_length == 1) {
+                            qsort(categories, *num_categories, sizeof(Category), compare_categories_by_value);
+                            printf("Sorting method changed successfully.\n");
+                            break;
+                        }
+                        else {
+                            printf("Invalid Choice.\n");
+                        }
+                    }
+                } while (sort_by_length != 0 || sort_by_length != 1);
                 break;
             case 8:
                 // Back to main menu

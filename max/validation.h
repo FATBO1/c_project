@@ -6,7 +6,7 @@
 int numValidation (char input[]) {
     int validInput = 1;
 
-    // Check each character in the input
+    // Check each character in the input for characters that are not numbers
     for (int i = 0; input[i] != '\0'; i++) {
         if (!isdigit(input[i]) && input[i] != '.') {
             validInput = 0;

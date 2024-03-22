@@ -9,7 +9,7 @@
 #include "modify.h"
 
 int main()
-{ 
+{
     while (1)
     {
         char title[150];
