@@ -6,16 +6,18 @@
 #include "print_graph.h"
 #include "save_graph.h"
 #include "compare_categories.h"
+#include "modify.h"
 
 int main()
-{
+{ 
     while (1)
     {
         char title[150];
         Category categories[MAX_CATEGORIES];
         char x_axis_label[150];
         int sort_by_length;
-        int num_categories, i;
+        int num_categories = 0;
+        int i;
         int user_option;
         char filename[100];
 
@@ -24,30 +26,19 @@ int main()
         fgets(title, sizeof(title), stdin);
         title[strcspn(title, "\n")] = '\0'; // Removing newline character
 
-        char catinput[100]; // Assuming input does not exceed 100 characters
+        char catInput[100]; // Assuming input does not exceed 100 characters
         do
         {
             printf("Enter the number of categories (up to 12): ");
-            scanf("%s", catinput);
+            scanf("%s", catInput);
             getchar(); // Clearing the input buffer
 
-            int validInput = 1;
-
-            // Check each character in the input
-            for (int i = 0; catinput[i] != '\0'; i++)
-            {
-                if (!isdigit(catinput[i]))
-                {
-                    validInput = 0;
-                    printf("Invalid input! Please enter a number.\n");
-                    break;
-                }
-            }
+            int validInput = numValidation(catInput); // Input Validation
 
             // If input is valid (contains only digits), convert it to integer
             if (validInput)
             {
-                num_categories = atoi(catinput);
+                num_categories = atoi(catInput);
                 if (num_categories < 1 || num_categories > 12)
                 {
                     printf("Enter a valid number between 1 and 12!\n");
@@ -59,7 +50,7 @@ int main()
         printf("Enter category names and values (max 15 characters each):\n");
         for (i = 0; i < num_categories; i++)
         {
-            char input[MAX_CATEGORY_NAME_LENGTH];
+            char input[100];
             do
             {
                 // Input Category Name
@@ -107,7 +98,7 @@ int main()
 
         printf("Sort bars alphabetically by category name (0) or by bar length (1)? (0/1): ");
         scanf("%d", &sort_by_length);
-        getchar(); // Clearing the input buffer
+        getchar(); // Clearing the in5put buffer
 
         // Sort categories
         if (sort_by_length)
@@ -167,11 +158,12 @@ int main()
                 // Close the file
                 fclose(filePointer);
                 break;
-                
             case 2:
                 // Code to modify chart
                 printf("\nModifying chart...\n");
                 // You can put your modifying code here
+                modify_chart(categories, &num_categories, title, x_axis_label, sort_by_length);
+                print_horizontal_bar_chart(title, categories, num_categories, x_axis_label); // Print new chart
                 break;
             case 3:
                 // Code to create new chart

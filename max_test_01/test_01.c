@@ -1,39 +1,52 @@
+#include <windows.h>
 #include <stdio.h>
-#include "curl/curl.h"
-#include "cJSON.h"
 
-#define BUFFER_SIZE 1024  // Adjust as necessary
+void printColoredBar(int length, WORD color) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
-// This function will be used as the callback function to write the received data
-size_t write_callback(char *ptr, size_t size, size_t nmemb, void *userdata) {
-    // Just print the received data to stdout
-    fwrite(ptr, size, nmemb, stdout);
-    return size * nmemb;
+    // Save current attributes
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+    WORD saved_attributes = consoleInfo.wAttributes;
+
+    // Set new color attributes
+    SetConsoleTextAttribute(hConsole, color);
+
+    // Print bar
+    for (int i = 0; i < length; ++i) {
+        printf(" "); // Print space with background color
+    }
+    printf("\n"); // New line after the bar
+
+    // Reset to original attributes
+    SetConsoleTextAttribute(hConsole, saved_attributes);
 }
 
-int main(void) {
-    CURL *curl;
-    CURLcode res;
 
-    // Initialize libcurl
-    curl = curl_easy_init();
-    if(curl) {
-        // Set the URL to fetch
-        curl_easy_setopt(curl, CURLOPT_URL, "http://google.com");
+int main() {
+    // Save the current attributes
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+    WORD saved_attributes = consoleInfo.wAttributes;
+    WORD whiteForegroundBlackBackground = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY; // White text
 
-        // Set the callback function to handle the received data
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
+    // Print a green bar with length 10
+    printColoredBar(10, BACKGROUND_GREEN | BACKGROUND_INTENSITY);
+    printf("\n"); // Extra newline for spacing, if needed
 
-        // Perform the request
-        res = curl_easy_perform(curl);
+    // Print another green bar with length 50
+    printColoredBar(50, BACKGROUND_GREEN | BACKGROUND_INTENSITY);
+    printf("\n"); // Extra newline for spacing, if needed
 
-        // Check for errors
-        if(res != CURLE_OK)
-            fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
+    // Explicitly reset the console color to the original settings
+    SetConsoleTextAttribute(hConsole, whiteForegroundBlackBackground);
 
-        // Clean up
-        curl_easy_cleanup(curl);
-    }
+    // Now the console color is back to default, as it was before calling printColoredBar
+    printf("heyheyhey\n");
+
+    int i;
+    scanf("%d", &i); // Correct usage of scanf
 
     return 0;
 }

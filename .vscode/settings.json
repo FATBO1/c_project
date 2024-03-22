@@ -11,6 +11,7 @@
         "compare_categories.h": "c",
         "typeinfo": "cpp",
         "cjson.h": "c",
-        "curl.h": "c"
+        "curl.h": "c",
+        "windows.h": "c"
     }
 }

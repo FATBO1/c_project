@@ -40,7 +40,7 @@ void print_horizontal_bar_chart_to_file(FILE *filePointer, char title[], Categor
             fprintf(filePointer, "█");
    
         }
-        fprintf(filePointer, "\n");
+        fprintf(filePointer, " %.2f\n", categories[i].value);
     }
     fprintf(filePointer, "%15s|\n", " ");
     fprintf(filePointer, "%15s+", " ");
