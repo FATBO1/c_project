@@ -10,7 +10,6 @@
 -->
 
 
-https://github.com/FATBO1/c_project/assets/98154744/038b2158-5ee5-4227-991c-9d63bf5e5477
 
 
 
@@ -79,7 +78,11 @@ https://github.com/FATBO1/c_project/assets/98154744/038b2158-5ee5-4227-991c-9d63
 ## About The Project
 
 ![Product Name Screen Shot][product-screenshot]
-<p>Screen shot example of Horizontal Bar Chart generated</p>
+<p>Allows users to create Horizontal Bar Charts with various other useful features (covered in the sections below)</p>
+
+## Basic Demo
+https://github.com/FATBO1/c_project/assets/98154744/038b2158-5ee5-4227-991c-9d63bf5e5477
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
