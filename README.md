@@ -117,15 +117,15 @@ Simply launch the main.exe file
 
 ## Basic Features
 
-- Users can input various data to create the bar charts
+- Users can input various data to create bar charts
   - Name of Title
   - Number of Categories
   - Category Value
   - Name of X axis
-- Sorting according to alphabetical order or bar length
-- Saving of chart to a text file
+- Users can sort charts according to alphabetical order or bar length
+- Users can save charts to text files
   - Users can determine the file name
-- Input validation
+- Users will have their input validated by the program which displays appropriate error messages
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
