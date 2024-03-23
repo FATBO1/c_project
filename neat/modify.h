@@ -6,11 +6,12 @@
 #include "modify_functions.h"
 #include "print_graph.h"
 #include "compare_categories.h"
+#include "display_categories.h"
 
 void modify_chart(Category *categories, int *num_categories, char title[], char x_axis_label[]) {
     int option;
     while (1) {
-        printf("\nModification Options:\n");
+        printf("\n[Modification Options]\n");
         printf("1. Add a category.\n");
         printf("2. Remove a category.\n");
         printf("3. Modify a category name.\n");
@@ -30,16 +31,19 @@ void modify_chart(Category *categories, int *num_categories, char title[], char 
                 break;
                 
             case 2:
+                printCategories(&*num_categories, categories);
                 // Remove a category
                 removeCategory(&*num_categories, categories);
                 break;
                 
             case 3:
+                printCategories(&*num_categories, categories);
                 // Modify a category name
                 modifyCategoryName(&*num_categories, categories);
                 break;
                 
             case 4:
+                printCategories(&*num_categories, categories);
                 // Modify a category value
                 modifyCategoryValue(&*num_categories, categories);
                 break;

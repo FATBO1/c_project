@@ -99,7 +99,8 @@ int main()
         while (1)
         {
             // Print menu options
-            printf("\n1. Save chart to text file.\n");
+            printf("\n[Main Menu Options]\n");
+            printf("1. Save chart to text file.\n");
             printf("2. Modify chart.\n");
             printf("3. New Chart.\n");
             printf("4. Export raw data to csv.\n");

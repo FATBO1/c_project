@@ -20,4 +20,3 @@ int compare_categories_by_value(const void *a, const void *b)
 
 
 #endif // End of header guard
-SAFEARR_DISPATCH
