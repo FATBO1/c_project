@@ -99,7 +99,7 @@ https://github.com/FATBO1/c_project/assets/98154744/038b2158-5ee5-4227-991c-9d63
 ## Getting Started
 ### Prerequisites
 
-Require Windows OS to run the executable file "main.exe", which was build from "main.c". The program will run on windows terminal.
+Require Windows OS to run the executable file "main.exe", which was build from "main.c". The program will run on Windows terminal.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -119,21 +119,21 @@ Simply launch the main.exe file
 
 - Users can input various data to create the bar charts
   - Name of Title
-  - Category
+  - Number of Categories
   - Category Value
   - Name of X axis
-- Sorting of alphabetical and barlength
-- Save chart to text file
-  - Users can determine file name
+- Sorting according to alphabetical order or bar length
+- Saving of chart to a text file
+  - Users can determine the file name
 - Input validation
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-## Additonal Features
+## Additional Features
 
-- Modify chart after it is printed
+- Modify the chart after it is printed
 - Import and Export to CSV
 - Coloured Bar charts
 - Create New Chart
