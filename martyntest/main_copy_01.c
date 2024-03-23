@@ -93,8 +93,23 @@ int main()
         int sort_by_length;
         sortCategories(input, &sort_by_length, &num_categories, categories); // Prompt user to sort categories by alphabet/value
 
+        int chart_orientation;
+        printf("Select chart orientation:\n");
+        printf("1. Horizontal\n");
+        printf("2. Vertical\n");
+        printf("Enter your choice: ");
+        scanf("%d", &chart_orientation);
+        getchar(); // Clearing the input buffer
+
         // Call this function from "print_graph.h" to print the chart
-        print_horizontal_bar_chart(title, categories, num_categories, x_axis_label);
+        if (chart_orientation == 1)
+            print_horizontal_bar_chart(title, categories, num_categories, x_axis_label);
+        else if (chart_orientation == 2)
+            print_vertical_bar_chart(title, categories, num_categories, x_axis_label);
+        else {
+            printf("Invalid choice. Defaulting to horizontal bar chart.\n");
+            print_horizontal_bar_chart(title, categories, num_categories, x_axis_label);
+        }
 
         while (1)
         {
