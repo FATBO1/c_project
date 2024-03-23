@@ -225,7 +225,7 @@ int main()
                 // Code to modify chart
                 printf("\nModifying chart...\n");
                 // You can put your modifying code here
-                modify_chart(categories, &num_categories, title, x_axis_label, sort_by_length);
+                modify_chart(categories, &num_categories, title, x_axis_label);
                 print_horizontal_bar_chart(title, categories, num_categories, x_axis_label); // Print new chart
                 break;
             case 3:
