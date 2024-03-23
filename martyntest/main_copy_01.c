@@ -154,7 +154,12 @@ int main()
                     printf("Error opening the file.\n");
                     return 1; // Return an error code
                 }
-                print_horizontal_bar_chart_to_file(filePointer, title, categories, num_categories, x_axis_label);
+                if (chart_orientation == 1)
+                    print_horizontal_bar_chart_to_file(filePointer, title, categories, num_categories, x_axis_label);
+                else if (chart_orientation == 2)
+                    print_vertical_bar_chart_to_file(filePointer, title, categories, num_categories, x_axis_label);
+                else
+                    printf("Invalid chart orientation.\n");
                 
                 // Close the file
                 fclose(filePointer);
