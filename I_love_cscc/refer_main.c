@@ -1,7 +1,7 @@
 #ifndef compare_categories_H
 #define compare_categories_H
-// Header guard to prevent multiple inclusion of this header file
 
+// Header guard to prevent multiple inclusion of this header file
 
 // Comparator function for sorting categories alphabetically by name
 int compare_categories_by_name(const void *a, const void *b)
@@ -20,4 +20,3 @@ int compare_categories_by_value(const void *a, const void *b)
 
 
 #endif // End of header guard
-SAFEARR_DISPATCH
