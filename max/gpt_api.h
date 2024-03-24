@@ -38,7 +38,7 @@ void send_barchart_to_GPT_and_get_response(char *filename) {
 
     struct curl_slist *headers = NULL;
     headers = curl_slist_append(headers, "Content-Type: application/json");
-    headers = curl_slist_append(headers, "Authorization: Bearer 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");
+    headers = curl_slist_append(headers, "Authorization: Bearer ");
 
     // Read Bar Chart from saved text file
     char *bar_chart = readFileIntoString(filename);
