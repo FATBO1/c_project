@@ -94,35 +94,28 @@ int main()
         int sort_by_length;
         sortCategories(input, &sort_by_length, &num_categories, categories); // Prompt user to sort categories by alphabet/value
 
+        // Prompt user to choose graph orientation
         int graph_orientation;
-        while (1)
-    {
-        printf("\nChoose the graph orientation:\n");
-        printf("1. Horizontal bar graph\n");
-        printf("2. Vertical bar graph\n");
-        printf("Enter your choice: ");
-        scanf("%d", &graph_orientation);
-        getchar(); // Clearing the input buffer
-
-        if (graph_orientation == 1 || graph_orientation == 2)
-        {
-            break;
+        do {
+            printf("Choose graph orientation:\n");
+            printf("1. Horizontal\n");
+            printf("2. Vertical\n");
+            printf("Enter your choice: ");
+            scanf("%d", &graph_orientation);
+            getchar(); // Clearing the input buffer
+        
+            if (graph_orientation != 1 && graph_orientation != 2) {
+                printf("Invalid choice. Please try again.\n");
+            }
+        } while (graph_orientation != 1 && graph_orientation != 2);
+        
+        // Print the chart based on user's choice
+        if (graph_orientation == 1) {
+            print_horizontal_bar_chart(title, categories, num_categories, x_axis_label);
+        } else {
+            print_vertical_bar_chart(title, categories, num_categories, y_axis_label);
         }
-        else
-        {
-            printf("Invalid choice. Please enter 1 or 2.\n");
-        }
-    }
 
-    // Call the appropriate function based on the user's choice
-    if (graph_orientation == 1)
-    {
-        print_horizontal_bar_chart(title, categories, num_categories, x_axis_label);
-    }
-    else
-    {
-        print_vertical_bar_chart(title, categories, num_categories, x_axis_label);
-    }
 
         while (1)
         {
