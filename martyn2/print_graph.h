@@ -106,90 +106,84 @@ void print_horizontal_bar_chart(char title[], Category categories[], int num_cat
     printf("%*s%s%*s\n\n", label_padding, "", x_axis_label, label_padding, "");
 }
 
-// Function to print a vertical bar chart
 void print_vertical_bar_chart(char title[], Category categories[], int num_categories, char y_axis_label[])
 {
     int i, j;
     float max_value = 0;
-    int max_name_length = 0;
 
-    // Find the maximum value among all categories and the maximum length of category names
+    // Find the maximum value among all categories
     for (i = 0; i < num_categories; i++)
     {
         if (categories[i].value > max_value)
         {
             max_value = categories[i].value;
         }
-        int name_length = strlen(categories[i].name);
-        if (name_length > max_name_length)
-        {
-            max_name_length = name_length;
-        }
     }
 
-    // Determine the scaling factor to fit the bars within the display height
-    float scaling_factor = max_value > 20 ? max_value / 20 : 1;
+    // Print the chart
+    printf("\n");
+    printf("%*s\n\n", 75 + strlen(title) / 2, title);
 
-    // Print the chart title
-    printf("\n%*s\n\n", 75 + strlen(title) / 2, title);
-
-    // Get console information for handling colors using Windows Console API
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-
     CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
     GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
     WORD saved_attributes_first = consoleInfo.wAttributes;
 
-    // Define attributes for white text on black background
     WORD whiteForegroundBlackBackground = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
 
-    // Print the vertical bars
-    for (i = 20; i >= 0; i--)
+    // Print Y-axis label
+    printf("%s\n", y_axis_label);
+
+    // Determine the increment value
+    int increment = 2; // Adjust this value to change the increment
+
+    for (i = (int)max_value; i >= 0; i -= increment)
     {
-        printf("%6.2f |", i * scaling_factor);
-
-        for (j = 0; j < num_categories; j++)
+        if (i % increment == 0 || i == (int)max_value)
         {
-            int bar_height = categories[j].value / scaling_factor;
+            printf("%2d|", i);
 
-            if (bar_height >= i)
+            for (j = 0; j < num_categories; j++)
             {
-                // Print colored bar segment
-                printColoredBar(1, BACKGROUND_RED | BACKGROUND_INTENSITY);
+                if (categories[j].value >= i)
+                {
+                    printColoredBar(1, BACKGROUND_RED | BACKGROUND_INTENSITY);
+                    printf("  ");
+                }
+                else
+                {
+                    printf("   ");
+                }
+
+                SetConsoleTextAttribute(hConsole, whiteForegroundBlackBackground);
             }
-            else
-            {
-                printf(" ");
-            }
-            printf("%*s", max_name_length + 2, "");
+            printf("\n");
         }
-        printf("\n");
+        else
+        {
+            printf("  |");
+
+            for (j = 0; j < num_categories; j++)
+            {
+                printf("   ");
+            }
+            printf("\n");
+        }
     }
 
-    // Reset text color to white
-    SetConsoleTextAttribute(hConsole, whiteForegroundBlackBackground);
-
-    // Print the category names below the bars
-    printf("       +");
+    printf("  +");
     for (i = 0; i < num_categories; i++)
     {
-        printf("-");
-        for (j = 0; j < max_name_length + 1; j++)
-        {
-            printf("-");
-        }
+        printf("---");
     }
+    printf("\n   ");
+
+    for (i = 0; i < num_categories; i++)
+    {
+        printf("%2s ", categories[i].name);
+    }
+
     printf("\n");
-
-    printf("        ");
-    for (i = 0; i < num_categories; i++)
-    {
-        printf("%-*s ", max_name_length, categories[i].name);
-    }
-    printf("\n\n");
-
-    // Print Y-axis label with appropriate padding for centering
-    int label_padding = (20 - strlen(y_axis_label)) / 2;
-    printf("%*s%s%*s\n\n", label_padding, "", y_axis_label, label_padding, "");
 }
+
 #endif // End of header guard
