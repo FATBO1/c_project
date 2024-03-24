@@ -134,25 +134,41 @@ void print_vertical_bar_chart(char title[], Category categories[], int num_categ
     // Print Y-axis label
     printf("%s\n", y_axis_label);
 
-    for (i = (int)max_value; i >= 0; i--)
-    {
-        printf("%2d|", i);
+    // Determine the increment value
+    int increment = 2; // Adjust this value to change the increment
 
-        for (j = 0; j < num_categories; j++)
+    for (i = (int)max_value; i >= 0; i -= increment)
+    {
+        if (i % increment == 0 || i == (int)max_value)
         {
-            if (categories[j].value >= i)
+            printf("%2d|", i);
+
+            for (j = 0; j < num_categories; j++)
             {
-                printColoredBar(1, BACKGROUND_RED | BACKGROUND_INTENSITY);
-                printf("  ");
+                if (categories[j].value >= i)
+                {
+                    printColoredBar(1, BACKGROUND_RED | BACKGROUND_INTENSITY);
+                    printf("  ");
+                }
+                else
+                {
+                    printf("   ");
+                }
+
+                SetConsoleTextAttribute(hConsole, whiteForegroundBlackBackground);
             }
-            else
+            printf("\n");
+        }
+        else
+        {
+            printf("  |");
+
+            for (j = 0; j < num_categories; j++)
             {
                 printf("   ");
             }
-
-            SetConsoleTextAttribute(hConsole, whiteForegroundBlackBackground);
+            printf("\n");
         }
-        printf("\n");
     }
 
     printf("  +");
