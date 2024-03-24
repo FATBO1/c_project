@@ -22,8 +22,8 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-<!-- [![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
+[![Contributors][contributors-shield]][contributors-url]
+<!-- [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
@@ -41,7 +41,7 @@
 <h3 align="center">Horizontal Bar Chart Generator</h3>
 
   <p align="center">
-    A C project that generate Horizontal Bar Charts in the terminal that allow users to create and modify, save to text file. It has other features like sorting, coloured charts, import/export CSV, etc
+    Introducing our project written in the C programming language, designed to effortlessly generate Horizontal Bar Charts directly within the terminal interface. This user-friendly tool empowers users to seamlessly create, customize, and conveniently save their charts to text files. Boasting additional functionalities including sorting capabilities, vibrant color options for charts, and the ability to import/export data in CSV format, this project offers a comprehensive solution for data visualization needs.
     <br />
     <a href="https://github.com/FATBO1/c_project"><strong>Explore the docs »</strong></a>
     <br />
@@ -149,7 +149,7 @@ Simply launch the main.exe file
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
+[contributors-url]: https://github.com/FATBO1/c_project/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
 [forks-url]: https://github.com/github_username/repo_name/network/members
 [stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge

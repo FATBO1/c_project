@@ -84,7 +84,7 @@ void calculateMode(Category *categories, int *num_categories) {
 
     // Print mode(s) or message if no mode exists
     if (allEqual) {
-        printf("No mode exists. All numbers appear the same number of times.\n");
+        printf("\nNo mode exists. All numbers appear the same number of times.\n");
     } else {
         printf("Mode(s): ");
         for (int i = 0; i <= max; i++) {
