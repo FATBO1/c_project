@@ -6,14 +6,16 @@
 #include <string.h>
 #include <ctype.h>
 
-#include "category.h"
+#include "category.h" // Include the header file for the Category struct definition
 
+
+// Function to print a horizontal bar chart to a file
 void print_horizontal_bar_chart_to_file(FILE *filePointer, char title[], Category categories[], int num_categories, char x_axis_label[])
 {
     int i, j;
     float max_value = 0;
 
-    // Find the maximum value
+    // Find the maximum value among all categories
     for (i = 0; i < num_categories; i++)
     {
         if (categories[i].value > max_value)
@@ -22,30 +24,37 @@ void print_horizontal_bar_chart_to_file(FILE *filePointer, char title[], Categor
         }
     }
 
-    // Scaling factor
+    // Determine the scaling factor to fit the bars within the display width
     float scaling_factor = max_value > 134 ? max_value / 134 : 1;
 
     // Print the chart to the file
     fprintf(filePointer, "\n");
-    fprintf(filePointer, "%*s\n\n", 75 + strlen(title) / 2, title);
+
+    // Print the chart title with appropriate padding
+    fprintf(filePointer, "%*s\n\n", 75 + strlen(title) / 2, title); 
 
     for (i = 0; i < num_categories; i++)
     {
-        fprintf(filePointer, "%15s|\n", " ");
+        fprintf(filePointer, "%15s|\n", " "); // Print space and vertical bar for alignment
         fprintf(filePointer, "%15s|", categories[i].name); // Print category name followed by a vertical bar
-        int bar_length = categories[i].value / scaling_factor;
+        int bar_length = categories[i].value / scaling_factor; // Calculate the length of the bar based on the scaling factor
+        
+        // Print bars representing the category value using Unicode block characters for better visualization
         for (j = 0; j < bar_length; ++j)
         {
             //fprintf(filePointer, "X");
             fprintf(filePointer, "█");
    
         }
+        // Print the numerical value of the category
         fprintf(filePointer, " %.2f\n", categories[i].value);
     }
+
+    // Print separator line after all bars
     fprintf(filePointer, "%15s|\n", " ");
     fprintf(filePointer, "%15s+", " ");
 
-    // Print number of - before + to indicate tick marks
+    // Print tick marks to indicate scale on the X-axis
     for (int i = 0; i < 134; i++)
     {
         if (i == 49)
@@ -67,7 +76,7 @@ void print_horizontal_bar_chart_to_file(FILE *filePointer, char title[], Categor
     }
     fprintf(filePointer, "\n");
 
-    // Print Tick Values
+    // Print tick values if scaling factor is applied
     if (scaling_factor != 1)
     {
         int tick1 = (max_value / 134) * 50;
@@ -76,16 +85,16 @@ void print_horizontal_bar_chart_to_file(FILE *filePointer, char title[], Categor
         fprintf(filePointer, "%*d", 50, tick1);
         fprintf(filePointer, "%*d\n\n", 50, tick2);
     }
-    else
+    else // If no scaling factor, print default tick values
     {
         fprintf(filePointer, "%*s", 16, "0");
         fprintf(filePointer, "%*s", 50, "50");
         fprintf(filePointer, "%*s\n\n", 50, "100");
     }
 
-    // Print X-Axis Label
+    // Print X-axis label with appropriate padding for centering
     int label_padding = (150 - strlen(x_axis_label)) / 2;
     fprintf(filePointer, "%*s%s%*s\n\n", label_padding, "", x_axis_label, label_padding, "");
 }
 
-#endif
+#endif // End of header guard
