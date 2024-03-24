@@ -120,9 +120,6 @@ void print_vertical_bar_chart(char title[], Category categories[], int num_categ
         }
     }
 
-    // Determine the scaling factor to fit the bars within the display height
-    float scaling_factor = max_value > 20 ? max_value / 20 : 1;
-
     // Print the chart
     printf("\n");
     printf("%*s\n\n", 75 + strlen(title) / 2, title);
@@ -137,15 +134,13 @@ void print_vertical_bar_chart(char title[], Category categories[], int num_categ
     // Print Y-axis label
     printf("%s\n", y_axis_label);
 
-    for (i = 20; i >= 0; i--)
+    for (i = (int)max_value; i >= 0; i--)
     {
         printf("%2d|", i);
 
         for (j = 0; j < num_categories; j++)
         {
-            int bar_height = categories[j].value / scaling_factor;
-
-            if (i <= bar_height)
+            if (categories[j].value >= i)
             {
                 printColoredBar(1, BACKGROUND_RED | BACKGROUND_INTENSITY);
                 printf("  ");
