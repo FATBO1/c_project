@@ -14,6 +14,9 @@
 #include "export_excel.h"         // For exporting data to excel/csv
 #include "mathAnalysis.h"         // For obtaining values useful for statistical analysis
 #include "gpt_api.h"
+#include "ignore_check_libcurl.h"
+#include "download_gcc_with_libcurl.h"
+
 
 
 int main()
@@ -135,7 +138,7 @@ int main()
             printf("3. New Chart.\n");
             printf("4. Export raw data to csv.\n");
             printf("5. Perform Statistical Analysis.\n");
-            printf("6. Get analysis from ChatGPT.\n");
+            printf("6. Get analysis from ChatGPT API (gpt-3.5-turbo).\n");
             printf("7. Close Program.\n");
             printf("Enter your option: ");
 
@@ -216,8 +219,12 @@ int main()
                     // If not, append ".txt" to the filename
                     strcat(filename, ".txt");
                 }
-                send_barchart_to_GPT_and_get_response(filename);
+                printf("\n");
+                if (send_barchart_to_GPT_and_get_response(filename)){
+                    break;
+                }
                 break;
+
             case 7:
                 // Code to close the program
                 printf("\nClosing program...\n");

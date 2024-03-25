@@ -13,7 +13,7 @@
 #include "escape_barchart.h"
 
 
-#define JSON_MAX_LEN 2048
+#define JSON_MAX_LEN 4096 
 
 size_t write_callback(void *content, size_t size, size_t nmemb, void *userp)
 {
@@ -25,7 +25,7 @@ size_t write_callback(void *content, size_t size, size_t nmemb, void *userp)
 }
 
 
-void send_barchart_to_GPT_and_get_response(char *filename) {
+int send_barchart_to_GPT_and_get_response(char *filename) {
     CURL *curl = curl_easy_init();
 
     if (curl == NULL)
@@ -41,20 +41,21 @@ void send_barchart_to_GPT_and_get_response(char *filename) {
     headers = curl_slist_append(headers, "Authorization: Bearer");
 
     // Read Bar Chart from saved text file
-    char *bar_chart = readFileIntoString(filename);
+    char *bar_chart = readFileIntoString(filename); // call functionn from read_textfile.h
     if (bar_chart != NULL)
     {
         //printf("%s\n", bar_chart);
-        printf("%s\n", "Sending bar chart to ChatGPT...\n");
+        printf("%s\n", "Sending bar chart to ChatGPT to analyze...\n");
     }
     else
     {
         printf("Failed to read file.\n");
+        return 1;
     }
 
-
+    char *prompt = "Base on the given bar chart provide some Visual Analysis, Statistical Analysis, Predictive Insights, Contextual Analysis, Trend Analysis, Comparative Analysis. Give an in depth and meaningful analysis on this bar chart. Give any predictions or any meaningful opinion.";
     char json_payload[JSON_MAX_LEN];
-    sprintf(json_payload, "{\"model\": \"gpt-3.5-turbo\", \"messages\": [{\"role\": \"user\", \"content\": \"%s\"}]}", escape_barchart_forJSON(bar_chart));
+    sprintf(json_payload, "{\"model\": \"gpt-3.5-turbo\", \"messages\": [{\"role\": \"user\", \"content\": \"%s%s\"}]}", escape_barchart_forJSON(bar_chart), prompt);
     free(bar_chart); // Free the memory when done
 
     curl_easy_setopt(curl, CURLOPT_URL, "https://api.openai.com/v1/chat/completions");
@@ -63,6 +64,7 @@ void send_barchart_to_GPT_and_get_response(char *filename) {
     curl_easy_setopt(curl, CURLOPT_POSTFIELDS, json_payload);
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, response);
+    curl_easy_setopt(curl, CURLOPT_TIMEOUT, 240L);
 
     CURLcode res = curl_easy_perform(curl);
 
@@ -136,7 +138,7 @@ void send_barchart_to_GPT_and_get_response(char *filename) {
         return 1;
     }
 
-    printf("%s", content->valuestring);
+    printf("%s\n", content->valuestring);
 }
 
 

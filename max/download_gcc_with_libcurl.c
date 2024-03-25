@@ -93,7 +93,7 @@ BOOL CopyFolderContents(const char *source, const char *destination, int *filesC
 
 int main() {
     int filesCopied = 0;
-    const char *sourceFolderName = "save"; // Name of the source folder in the current directory
+    const char *sourceFolderName = "msys64"; // Name of the source folder in the current directory
     const char *targetPath = "C:\\"; // Destination path where the source folder will be copied
 
     char currentDirectory[MAX_PATH];
@@ -119,12 +119,12 @@ int main() {
     // Count the total number of files to copy
     int totalFiles = CountFilesInDirectory(sourcePath);
 
-    printf("Copying...\n");
+    printf("Copying msys64 to C:/...\n");
     if (CopyFolderContents(sourcePath, destinationPath, &filesCopied, totalFiles)) {
         UpdateProgressBar(filesCopied, totalFiles); // Final update to ensure progress bar reaches 100%
-        printf("\nFolder copied successfully.\n");
+        printf("\nmsys64 copied successfully to C:/.\n");
     } else {
-        printf("\nFailed to copy folder.\n");
+        printf("\nFailed to copy msys64 to C:/.\n");
     }
 
     return 0;

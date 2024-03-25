@@ -12,6 +12,9 @@
         "typeinfo": "cpp",
         "cjson.h": "c",
         "curl.h": "c",
-        "windows.h": "c"
+        "windows.h": "c",
+        "download_gcc_with_libcurl.h": "c",
+        "any": "c",
+        "bitset": "c"
     }
 }
