@@ -42,7 +42,7 @@ void mathAnalysis(Category *categories, int *num_categories) {
                 break;
 
             case 5:
-                double standardDeviation = sqrt(variance);
+                double standardDeviation = sqrt(calculateVariance(categories, &*num_categories));
                 printf("\nStandard Deviation: %.2f\n", standardDeviation);
                 break;
 

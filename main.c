@@ -185,10 +185,8 @@ int main()
             case 2:
                 // Code to modify chart
                 printf("\nModifying chart...\n");
-
-                // You can put your modifying code here
                 modify_chart(categories, &num_categories, title, x_axis_label);
-                print_horizontal_bar_chart(title, categories, num_categories, x_axis_label); // Print new chart
+                print_horizontal_bar_chart(title, categories, num_categories, x_axis_label);
                 break;
 
             case 3:
@@ -197,17 +195,17 @@ int main()
                 break;
 
             case 4:
-                //code to export raw data
+                // Code to export raw data
                 prompt_for_folder_path(folderpath, sizeof(filepath));
                 construct_file_path(filepath, folderpath, title, sizeof(filepath));
                 export_to_csv(filepath, categories, num_categories);
                 break;
 
             case 5:
-                // Code to display analysis options menu
-                printf("\nFetching Analysis Options...\n");
+                // Code to display statistical analysis options menu
+                printf("\nFetching Statistical Analysis Options...\n");
                 mathAnalysis(categories, &num_categories);
-                print_horizontal_bar_chart(title, categories, num_categories, x_axis_label); // Print chart
+                print_horizontal_bar_chart(title, categories, num_categories, x_axis_label);
                 break;
 
             case 6:

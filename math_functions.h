@@ -100,17 +100,17 @@ void calculateMode(Category *categories, int *num_categories) {
 }
 
 double calculateVariance(Category *categories, int *num_categories) {
-    // Step 1: Calculate the mean
+    // Calculate the mean
     double mean = calculateMean(categories, num_categories);
 
-    // Step 2: Calculate the squared differences and sum them up
+    // Calculate the squared differences and sum them up
     double sumSquaredDiffs = 0.0;
     for (int i = 0; i < *num_categories; i++) {
         double diff = categories[i].value - mean;
         sumSquaredDiffs += diff * diff;
     }
 
-    // Step 3: Calculate the mean of the squared differences (variance)
+    // Calculate the mean of the squared differences (variance)
     double variance = sumSquaredDiffs / *num_categories;
 
     return variance;
