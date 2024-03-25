@@ -100,7 +100,7 @@ https://github.com/FATBO1/c_project/assets/98154744/038b2158-5ee5-4227-991c-9d63
 ### Prerequisites
 - Required OS: Windows
 - Installed MinGW containing msys64 folder (To use GCC to build files)
-  - If you have not done so, please follow the instructions in this link https://code.visualstudio.com/docs/cpp/config-mingw
+  - If you have not done so, please follow the instructions in this link https://code.visualstudio.com/docs/cpp/config-mingw#_prerequisites
   - Make sure after installation the msys64 folder is under C:\ 
   - ![alt text](image-4.png)
   - Make sure that this step is completed (Screenshot is from the URL above)
