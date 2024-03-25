@@ -41,7 +41,7 @@
 <h3 align="center">Horizontal Bar Chart Generator</h3>
 
   <p align="center">
-    Introducing our project written in the C programming language, designed to effortlessly generate Horizontal Bar Charts directly within the terminal interface. This user-friendly tool empowers users to seamlessly create, customize, and conveniently save their charts to text files. Boasting additional functionalities including sorting capabilities, vibrant color options for charts, and the ability to import/export data in CSV format, this project offers a comprehensive solution for data visualization needs.
+    Introducing our latest project developed in C: a sophisticated tool designed to effortlessly generate Horizontal Bar Charts within your terminal interface. With a user-friendly interface, customization options, and the ability to save charts to text files, it streamlines the data visualization process. Additionally, it offers sorting capabilities, vibrant color options, and seamless CSV import/export functionality, making it a comprehensive solution for diverse data visualization needs. What sets our project apart is its integration with the OpenAI ChatGPT API, allowing for enhanced analysis directly within the workflow. From simple tasks to complex analyses, our project provides professionals with the tools they need to visualize data effectively and make informed decisions.
     <br />
     <a href="https://github.com/FATBO1/c_project"><strong>Explore the docs »</strong></a>
     <br />
@@ -98,8 +98,49 @@ https://github.com/FATBO1/c_project/assets/98154744/038b2158-5ee5-4227-991c-9d63
 <!-- GETTING STARTED -->
 ## Getting Started
 ### Prerequisites
+- Required OS: Windows
+- Installed MinGW containing msys64 folder (To use GCC to build files)
+  - If you have not done so, please follow the instructions in this link https://code.visualstudio.com/docs/cpp/config-mingw#_prerequisites
+  - Make sure after installation the msys64 folder is under C:\ 
+  - ![alt text](image-4.png)
+  - Make sure that this step is completed (Screenshot is from the URL above)
+  - ![alt text](image-2.png)
 
-Require Windows OS to run the executable file "main.exe", which was build from "main.c". The program will run on Windows terminal.
+
+### Step 1
+- Clone the repository into a directory or simply download the zipped file and unzip it
+
+### Step 2
+- Go to "C:\" directory on file explorer
+  - Find the "msys64" and rename it to something else (we will use the msys64 that is provided in this repo) 
+  - ![alt text](image-7.png)
+
+### Step 3
+- Go to where you have clone the repo or where you have unzip it to locate "download_gcc_with_libcurl.exe"
+  - Double click on it to launch the exe. This will copy a new "msys64" folder with the required files to "C:\" directory. 
+  - ![alt text](image-8.png)
+  - This step is crucial in order to ensure curl and libcurl is installed correctly, this is required to run the OpenAI ChatGPT API
+
+### Step 4
+- Go to where you have clone the repo or where you have unzip it to locate "gpt_api.h"
+  - Open it in VSC or a text editor
+    - Find "Authorization: Bearer " text in the file and replace the "OpenAI_API_KEY" placeholder with the actual API KEY from OpenAI API 
+    - ![alt text](image-12.png)
+
+### Step 5
+- Go to where you have clone the repo or where you have unzip it to locate "main.c", we are going to build it now with cJSON and libcurl
+- Open the repo in Windows Terminal
+  - Tip* You can do it by navigating to the repo in your file explorer and type "cmd" in the search bar
+  - In Windows Terminal enter this command to build the main.c
+  ```sh
+  gcc main.c -o main cJSON/cJSON.c -lcurl
+  ```
+### Step 6
+- Go to where you have clone the repo or where you have unzip it to locate "main.exe", we are going to launch the application at last !
+  - Double click on "main.exe" to launch the application, a new Windows Terminal should appear and the application should be running now
+  - You should see this... Simply follow the instructions to generate bar charts and play with the features we have added !
+  - ![alt text](image-13.png) 
+
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -108,7 +149,7 @@ Require Windows OS to run the executable file "main.exe", which was build from "
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-Simply launch the main.exe file
+Simply launch the main.exe file again to launch the application
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -133,7 +174,10 @@ Simply launch the main.exe file
 
 ## Additional Features
 
+- Statistical Analysis Options
+- OpenAI ChatGPT API for analysis
 - Modify the chart after it is printed
+- Allow Users to choose colours of the bar chart
 - Import and Export to CSV
 - Coloured Bar charts
 - Create New Chart
