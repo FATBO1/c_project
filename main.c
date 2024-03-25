@@ -13,7 +13,7 @@
 #include "import_excel.h"         // For importing data from excel/csv
 #include "export_excel.h"         // For exporting data to excel/csv
 #include "mathAnalysis.h"         // For obtaining values useful for statistical analysis
-#include "gpt_api.h"
+#include "gpt_api.h"              // For sending data and receiving analysis from OpenAI ChatGPT API
 
 
 
