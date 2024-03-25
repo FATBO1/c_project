@@ -25,7 +25,7 @@ size_t write_callback(void *content, size_t size, size_t nmemb, void *userp)
 }
 
 
-int send_barchart_to_GPT_and_get_response(char *filename) {
+int send_get_GPT_response(char *filename) {
     CURL *curl = curl_easy_init();
 
     if (curl == NULL)
@@ -38,7 +38,7 @@ int send_barchart_to_GPT_and_get_response(char *filename) {
 
     struct curl_slist *headers = NULL;
     headers = curl_slist_append(headers, "Content-Type: application/json");
-    headers = curl_slist_append(headers, "Authorization: Bearer");
+    headers = curl_slist_append(headers, "Authorization: Bearer OpenAI_ChatGPT_KEY"); //OpenAI_ChatGPT_KEY
 
     // Read Bar Chart from saved text file
     char *bar_chart = readFileIntoString(filename); // call functionn from read_textfile.h

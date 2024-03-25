@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include "coloured_bar_functions.h"
 
-void printColoredBar(int length, WORD colour) {
+void printColouredBar(int length, WORD colour) {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
     // Save current attributes

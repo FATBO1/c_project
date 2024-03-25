@@ -224,7 +224,7 @@ int main()
                     strcat(filename, ".txt");
                 }
                 printf("\n");
-                if (send_barchart_to_GPT_and_get_response(filename)){
+                if (send_get_GPT_response(filename)){
                     break;
                 }
                 break;

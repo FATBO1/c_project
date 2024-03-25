@@ -50,7 +50,7 @@ void print_horizontal_bar_chart(char title[], Category categories[], int num_cat
         int bar_length = categories[i].value / scaling_factor; // Calculate the length of the bar based on the scaling factor
         
         // Print colored bar representing the category value
-        printColoredBar(bar_length, categories[i].colour);
+        printColouredBar(bar_length, categories[i].colour);
         
         // Reset text color to white after printing the bar
         SetConsoleTextAttribute(hConsole, whiteForegroundBlackBackground);
@@ -147,7 +147,7 @@ void print_vertical_bar_chart(char title[], Category categories[], int num_categ
             {
                 if (categories[j].value >= i)
                 {
-                    printColoredBar(1, categories[j].colour);
+                    printColouredBar(1, categories[j].colour);
                     printf("  ");
                 }
                 else
