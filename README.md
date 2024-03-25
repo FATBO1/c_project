@@ -102,9 +102,9 @@ https://github.com/FATBO1/c_project/assets/98154744/038b2158-5ee5-4227-991c-9d63
 - Installed MinGW containing msys64 folder (To use GCC to build files)
   - If you have not done so, please follow the instructions in this link https://code.visualstudio.com/docs/cpp/config-mingw#_prerequisites
   - Make sure after installation the msys64 folder is under C:\ 
-  - ![alt text](image-4.png)
+  - ![alt text](images/image-4.png)
   - Make sure that this step is completed (Screenshot is from the URL above)
-  - ![alt text](image-2.png)
+  - ![alt text](images/image-2.png)
 
 
 ### Step 1
@@ -113,19 +113,19 @@ https://github.com/FATBO1/c_project/assets/98154744/038b2158-5ee5-4227-991c-9d63
 ### Step 2
 - Go to "C:\" directory on file explorer
   - Find the "msys64" and rename it to something else (we will use the msys64 that is provided in this repo) 
-  - ![alt text](image-7.png)
+  - ![alt text](images/image-7.png)
 
 ### Step 3
 - Go to where you have clone the repo or where you have unzip it to locate "download_gcc_with_libcurl.exe"
   - Double click on it to launch the exe. This will copy a new "msys64" folder with the required files to "C:\" directory. 
-  - ![alt text](image-8.png)
+  - ![alt text](images/image-8.png)
   - This step is crucial in order to ensure curl and libcurl is installed correctly, this is required to run the OpenAI ChatGPT API
 
 ### Step 4
 - Go to where you have clone the repo or where you have unzip it to locate "gpt_api.h"
   - Open it in VSC or a text editor
     - Find "Authorization: Bearer " text in the file and replace the "OpenAI_API_KEY" placeholder with the actual API KEY from OpenAI API 
-    - ![alt text](image-12.png)
+    - ![alt text](images/image-12.png)
 
 ### Step 5
 - Go to where you have clone the repo or where you have unzip it to locate "main.c", we are going to build it now with cJSON and libcurl
@@ -139,7 +139,7 @@ https://github.com/FATBO1/c_project/assets/98154744/038b2158-5ee5-4227-991c-9d63
 - Go to where you have clone the repo or where you have unzip it to locate "main.exe", we are going to launch the application at last !
   - Double click on "main.exe" to launch the application, a new Windows Terminal should appear and the application should be running now
   - You should see this... Simply follow the instructions to generate bar charts and play with the features we have added !
-  - ![alt text](image-13.png) 
+  - ![alt text](images/image-13.png) 
 
 
 
