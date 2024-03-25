@@ -88,11 +88,11 @@ void print_horizontal_bar_chart(char title[], Category categories[], int num_cat
     // Print tick values if scaling factor is applied
     if (scaling_factor != 1)
     {
-        int tick1 = (max_value / 134) * 50;
-        int tick2 = (max_value / 134) * 100;
+        float tick1 = (max_value / 134) * 50;
+        float tick2 = (max_value / 134) * 100;
         printf("%*s", 16, "0");
-        printf("%*d", 50, tick1);
-        printf("%*d\n\n", 50, tick2);
+        printf("%*.2f", 50, tick1);
+        printf("%*.2f\n\n", 50, tick2);
     }
     else // If no scaling factor, print default tick values
     {
