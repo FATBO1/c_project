@@ -251,7 +251,16 @@ int main()
                 // Code to display statistical analysis options menu
                 printf("\nFetching Statistical Analysis Options...\n");
                 mathAnalysis(categories, &num_categories);
-                print_horizontal_bar_chart(title, categories, num_categories, x_axis_label);
+                if (initial_graph_orientation == 1)
+                {
+                    print_horizontal_bar_chart_to_file(filePointer, title, categories, num_categories, x_axis_label);
+                    initial_graph_orientation = 1;
+                    }
+                    else if (initial_graph_orientation == 2)
+                    {
+                        print_vertical_bar_chart(title, categories, num_categories, x_axis_label);
+                        initial_graph_orientation = 2;
+                        }
                 break;
 
             case 6:
