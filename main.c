@@ -119,7 +119,7 @@ int main()
         printf("2. Vertical bar graph\n");
         printf("Enter your choice: ");
         scanf("%d", &graph_orientation);
-        getchar(); // Clearing the input buffer
+        while (getchar() != '\n'); // Clearing the input buffer
 
         if (graph_orientation == 1 || graph_orientation == 2)
         {
@@ -132,13 +132,16 @@ int main()
     }
 
     // Call the appropriate function based on the user's choice
+    int initial_graph_orientation = 0;
     if (graph_orientation == 1)
     {
         print_horizontal_bar_chart(title, categories, num_categories, x_axis_label);
+        initial_graph_orientation = 1;
     }
     else
     {
         print_vertical_bar_chart(title, categories, num_categories, x_axis_label);
+        initial_graph_orientation = 2;
     }
 
         while (1)
@@ -186,7 +189,15 @@ int main()
                     printf("Error opening the file.\n");
                     return 1; // Return an error code
                 }
-                print_horizontal_bar_chart_to_file(filePointer, title, categories, num_categories, x_axis_label);
+                if (initial_graph_orientation == 1)
+                {
+                    print_horizontal_bar_chart_to_file(filePointer, title, categories, num_categories, x_axis_label);
+                    }
+                    else if (initial_graph_orientation == 2)
+                    {
+                        print_vertical_bar_chart(title, categories, num_categories, x_axis_label);
+                        }
+                
                 
                 // Close the file
                 fclose(filePointer);
@@ -196,7 +207,32 @@ int main()
                 // Code to modify chart
                 printf("\nModifying chart...\n");
                 modify_chart(categories, &num_categories, title, x_axis_label);
-                print_horizontal_bar_chart(title, categories, num_categories, x_axis_label);
+                while (1)
+                {
+                    printf("\nChoose the graph orientation:\n");
+                    printf("1. Horizontal bar graph\n");
+                    printf("2. Vertical bar graph\n");
+                    printf("Enter your choice: ");
+                    scanf("%d", &graph_orientation);
+                    while (getchar() != '\n'); // Clearing the input buffer
+                    if (graph_orientation == 1 || graph_orientation == 2)
+                    {
+                        break;
+                        }
+                        else
+                        {
+                            printf("Invalid choice. Please enter 1 or 2.\n");
+                        }
+                } 
+
+                if (graph_orientation == 1)
+                {
+                    print_horizontal_bar_chart(title, categories, num_categories, x_axis_label);
+                    }
+                    else
+                    {
+                        print_vertical_bar_chart(title, categories, num_categories, x_axis_label);
+                        }      
                 break;
 
             case 3:
@@ -215,7 +251,16 @@ int main()
                 // Code to display statistical analysis options menu
                 printf("\nFetching Statistical Analysis Options...\n");
                 mathAnalysis(categories, &num_categories);
-                print_horizontal_bar_chart(title, categories, num_categories, x_axis_label);
+                if (initial_graph_orientation == 1)
+                {
+                    print_horizontal_bar_chart_to_file(filePointer, title, categories, num_categories, x_axis_label);
+                    initial_graph_orientation = 1;
+                    }
+                    else if (initial_graph_orientation == 2)
+                    {
+                        print_vertical_bar_chart(title, categories, num_categories, x_axis_label);
+                        initial_graph_orientation = 2;
+                        }
                 break;
 
             case 6:
