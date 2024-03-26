@@ -5,8 +5,6 @@
  *@author HENG XIANG FAN 2303704
  *@author NGOH SI YAO DONOVAN 2303695
 */
- 
-
 
 #include <stdio.h>
 #include <stdlib.h>

@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <windows.h>
+
 
 #include "category.h"
 
@@ -31,6 +33,7 @@ void addCategory(int *num_categories, Category *categories) {
             
             if (validInput) {
                 categories[*num_categories].value = atof(valueInput); // Convert input string to float
+                categories[*num_categories].colour = BACKGROUND_RED | BACKGROUND_INTENSITY;
                 break;
             }
         } while (!validInput);

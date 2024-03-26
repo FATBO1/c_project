@@ -52,7 +52,7 @@ void processCategorySelections(char input[], int num_categories, Category catego
     // For each of the validIndices, set the colour for that category
     for (int i = 0; i < validCount; i++) {
         categories[validIndices[i]].colour = colour;
-        printf("Category %s is set to color %d.\n", categories[validIndices[i]].name, colour);
+        printf("Category %s color has been set successfully.\n", categories[validIndices[i]].name);
     }
 
     // Report invalid inputs
