@@ -118,7 +118,7 @@ https://github.com/FATBO1/c_project/assets/98154744/038b2158-5ee5-4227-991c-9d63
 ### Step 3
 - Go to where you have clone the repo or where you have unzip it to locate "download_gcc_libcurl.exe" file
   - Double click on it to launch the exe. This will copy a new "msys64" folder with the required files to "C:\" directory. 
-  - ![alt text](image-1.png)
+  - ![alt text](images/image-14.png)
   - This step is crucial in order to ensure curl and libcurl is installed correctly, this is required to run the OpenAI ChatGPT API
 
 ### Step 4
