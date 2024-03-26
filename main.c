@@ -132,13 +132,16 @@ int main()
     }
 
     // Call the appropriate function based on the user's choice
+    int initial_graph_orientation = 0;
     if (graph_orientation == 1)
     {
         print_horizontal_bar_chart(title, categories, num_categories, x_axis_label);
+        initial_graph_orientation = 1;
     }
     else
     {
         print_vertical_bar_chart(title, categories, num_categories, x_axis_label);
+        initial_graph_orientation = 2;
     }
 
         while (1)
@@ -186,7 +189,15 @@ int main()
                     printf("Error opening the file.\n");
                     return 1; // Return an error code
                 }
-                print_horizontal_bar_chart_to_file(filePointer, title, categories, num_categories, x_axis_label);
+                if (initial_graph_orientation == 1)
+                {
+                    print_horizontal_bar_chart_to_file(filePointer, title, categories, num_categories, x_axis_label);
+                    }
+                    else if (initial_graph_orientation == 2)
+                    {
+                        print_vertical_bar_chart(title, categories, num_categories, x_axis_label);
+                        }
+                
                 
                 // Close the file
                 fclose(filePointer);
