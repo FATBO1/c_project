@@ -16,7 +16,7 @@ bool import_data_from_csv(const char *filepath, Category categories[], int *num_
     }
     
     char buffer[256];
-    int count = 0;
+    int count = -1;
    
     while (fgets(buffer, sizeof(buffer), file) && count < MAX_CATEGORIES) {
         // Assuming CSV format is: categoryName,value
