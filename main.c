@@ -1,4 +1,11 @@
-
+/**
+ *@author MAX NEO 2303714
+ *@author DAVID TAN XINKAI 2303693
+ *@author YEO WEI JIE MARTYN 2303718
+ *@author HENG XIANG FAN 2303704
+ *@author NGOH SI YAO DONOVAN 2303695
+*/
+ 
 
 
 #include <stdio.h>
