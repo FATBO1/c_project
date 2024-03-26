@@ -196,7 +196,32 @@ int main()
                 // Code to modify chart
                 printf("\nModifying chart...\n");
                 modify_chart(categories, &num_categories, title, x_axis_label);
-                print_horizontal_bar_chart(title, categories, num_categories, x_axis_label);
+                while (1)
+                {
+                    printf("\nChoose the graph orientation:\n");
+                    printf("1. Horizontal bar graph\n");
+                    printf("2. Vertical bar graph\n");
+                    printf("Enter your choice: ");
+                    scanf("%d", &graph_orientation);
+                    while (getchar() != '\n'); // Clearing the input buffer
+                    if (graph_orientation == 1 || graph_orientation == 2)
+                    {
+                        break;
+                        }
+                        else
+                        {
+                            printf("Invalid choice. Please enter 1 or 2.\n");
+                        }
+                } 
+
+                if (graph_orientation == 1)
+                {
+                    print_horizontal_bar_chart(title, categories, num_categories, x_axis_label);
+                    }
+                    else
+                    {
+                        print_vertical_bar_chart(title, categories, num_categories, x_axis_label);
+                        }      
                 break;
 
             case 3:
