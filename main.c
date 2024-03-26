@@ -119,7 +119,7 @@ int main()
         printf("2. Vertical bar graph\n");
         printf("Enter your choice: ");
         scanf("%d", &graph_orientation);
-        getchar(); // Clearing the input buffer
+        while (getchar() != '\n'); // Clearing the input buffer
 
         if (graph_orientation == 1 || graph_orientation == 2)
         {
